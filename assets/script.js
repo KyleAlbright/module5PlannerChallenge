@@ -6,39 +6,52 @@ currentDay.text(moment().format("dddd, MMM Do, YYYY"));
 var currentTime = moment().hour();
 console.log(currentTime);
 
-if (localStorage.getItem(".description")) {
-  hourlyArray = JSON.parse(localStorage.getItem(".description"));
-} else {
-  hourlyArray = [];
-};
-
+function updateTime() {
 
 
 
   $(".time-block").each(function () {
-  var scheduleTime = $(this).attr("id");
-  console.log(scheduleTime);
+    var scheduleTime = $(this).attr("id");
+    console.log(scheduleTime);
 
-  if (scheduleTime < currentTime) {
-    $(this).children("textarea").addClass("past");
-  } else if (scheduleTime == currentTime) {
-    $(this).children("textarea").addClass("present");
-  } else {
-    $(this).children("textarea").addClass("future");
+    if (scheduleTime < currentTime) {
+      $(this).children("textarea").addClass("past");
+    } else if (scheduleTime == currentTime) {
+      $(this).children("textarea").addClass("present");
+    } else {
+      $(this).children("textarea").addClass("future");
+    }
+  });
+
+
+
+
+
+  var timeBlocks = $(".time-block")
+
+  for (let index = 0; index < timeBlocks.length; index++) {
+    const element = timeBlocks[index];
+
+    var timeId = $(element).attr("id");
+    var timeValue = localStorage.getItem(timeId) // We need to move that value to the exterior
+    if (timeValue)
+      $(element).children(".description").val(timeValue)
   }
-});
+console.log("test")
 
+}
 
+updateTime()
 
-$(".saveBtn").on("click", function(){
+setInterval(updateTime,1000)
+$(".saveBtn").on("click", function () {
   //Key
   var key = $(this).parent().attr("id");
   //Value
   var value = $(this).parent().find(".description").val();
   //Save Key and Value to Local Storage
-  localStorage.setItem(key,value);
+  localStorage.setItem(key, value);
 });
-
 
 // $(".saveBtn").on("click", function () {
 //   var hourClicked = $(this).attr("data-hour-to-save");
@@ -79,3 +92,9 @@ go back into local storage
 // } else {
 //   hourlyArray = [];
 // }
+
+//loop over all the v
+
+
+
+// 
