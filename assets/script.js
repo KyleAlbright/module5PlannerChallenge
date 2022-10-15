@@ -6,7 +6,16 @@ currentDay.text(moment().format("dddd, MMM Do, YYYY"));
 var currentTime = moment().hour();
 console.log(currentTime);
 
-$(".time-block").each(function () {
+if (localStorage.getItem(".description")) {
+  hourlyArray = JSON.parse(localStorage.getItem(".description"));
+} else {
+  hourlyArray = [];
+};
+
+
+
+
+  $(".time-block").each(function () {
   var scheduleTime = $(this).attr("id");
   console.log(scheduleTime);
 
@@ -19,19 +28,31 @@ $(".time-block").each(function () {
   }
 });
 
-$(".saveBtn").on("click", function () {
-  var hourClicked = $(this).attr("data-hour-to-save");
-  console.log(hourClicked);
 
-  var userInput = $(this).parent().find(".description").val();
-  console.log("user inpuit", userInput);
 
-  var currentLocalStorage = JSON.parse(localStorage.getItem("savedInfo")) || [];
-
-  currentLocalStorage[parseInt(hourClicked) - 9] = userInput;
-
-  localStorage.setItem("savedInfo", JSON.stringify(currentLocalStorage));
+$(".saveBtn").on("click", function(){
+  //Key
+  var key = $(this).parent().attr("id");
+  //Value
+  var value = $(this).parent().find(".description").val();
+  //Save Key and Value to Local Storage
+  localStorage.setItem(key,value);
 });
+
+
+// $(".saveBtn").on("click", function () {
+//   var hourClicked = $(this).attr("data-hour-to-save");
+//   console.log(hourClicked);
+
+//   var userInput = $(this).parent().find(".description").val();
+//   console.log("user input", userInput);
+
+//   var currentLocalStorage = JSON.parse(localStorage.getItem("savedInfo")) || [];
+
+//   currentLocalStorage[parseInt(hourClicked) - 9] = userInput;
+
+//   localStorage.setItem("savedInfo", JSON.stringify(currentLocalStorage));
+// });
 
 /*
 local storage requires a string as datatype
@@ -53,3 +74,8 @@ go back into local storage
  * $('desired text area).text(savedForThisHour);
  * }
  */
+//  if (localStorage.getItem("localHourlyTasks")) {
+//   hourlyArray = JSON.parse(localStorage.getItem("localHourlyTasks"));
+// } else {
+//   hourlyArray = [];
+// }
