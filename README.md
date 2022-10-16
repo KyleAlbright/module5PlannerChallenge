@@ -38,3 +38,6 @@ When the user is presented with the schedule they can see the current date displ
 
 * https://kylealbright.github.io/module5PlannerChallenge/
 
+
+![Screenshot (2)](https://user-images.githubusercontent.com/110487869/196051056-99f1e511-5ee3-4756-b043-3983ba43d476.png)
+
