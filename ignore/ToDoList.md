@@ -10,7 +10,7 @@ ________________________________________________________________________
    |  TIME   |          Text Area                 | Save Btn |
         2                    8                          2
  
- * 
+ 
 
 ________________________________________________________________________
 
@@ -27,8 +27,14 @@ ________________________________________________________________________
 
 * not sure whats needed here yet. I think I will know more once I lay out the HTML and see how the third party API's react... we shall see. 
 
+
+
 ________________________________________________________________________
 
 # ToDo List
 
-* set up containers / divs for the hour blocks.
+* set up containers / divs for the hour blocks in bootstrap.
+* set up div id's so we are able to access the time blocks, and tie them to the user input
+* an if / else if / else statement to color code the time blocks
+* A function that will reset the app every minute
+* setItem / getItem for the user input. 

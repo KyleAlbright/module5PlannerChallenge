@@ -1,15 +1,16 @@
 
-
+// a variable made to display the date at the top of the screen
 var currentDay = $("#currentDay");
 currentDay.text(moment().format("dddd, MMM Do, YYYY"));
 
+// a variable to check the local time to color code the blocks of time
 var currentTime = moment().hour();
 console.log(currentTime);
 
+// overlying function to run the program every minute to keep it updated.
 function updateTime() {
 
-
-
+  // function to color-code the time blocks
   $(".time-block").each(function () {
     var scheduleTime = $(this).attr("id");
     console.log(scheduleTime);
@@ -23,78 +24,31 @@ function updateTime() {
     }
   });
 
-
-
-
-
+  // setting a variable for the time blocks using Jquery
   var timeBlocks = $(".time-block")
 
+  // for loop to cycle through the time blocks
   for (let index = 0; index < timeBlocks.length; index++) {
     const element = timeBlocks[index];
 
+    // grabbing the item set in local storage using the key
     var timeId = $(element).attr("id");
-    var timeValue = localStorage.getItem(timeId) // We need to move that value to the exterior
+    var timeValue = localStorage.getItem(timeId);
     if (timeValue)
       $(element).children(".description").val(timeValue)
   }
-console.log("test")
+  console.log("test")
 
 }
-
+// calling the function to run the program every minute
 updateTime()
+setInterval(updateTime, 60000)
 
-setInterval(updateTime,1000)
+// click event to store the item in local storage 
 $(".saveBtn").on("click", function () {
-  //Key
+  
   var key = $(this).parent().attr("id");
-  //Value
   var value = $(this).parent().find(".description").val();
-  //Save Key and Value to Local Storage
   localStorage.setItem(key, value);
 });
 
-// $(".saveBtn").on("click", function () {
-//   var hourClicked = $(this).attr("data-hour-to-save");
-//   console.log(hourClicked);
-
-//   var userInput = $(this).parent().find(".description").val();
-//   console.log("user input", userInput);
-
-//   var currentLocalStorage = JSON.parse(localStorage.getItem("savedInfo")) || [];
-
-//   currentLocalStorage[parseInt(hourClicked) - 9] = userInput;
-
-//   localStorage.setItem("savedInfo", JSON.stringify(currentLocalStorage));
-// });
-
-/*
-local storage requires a string as datatype
-thats not a great way to to interpret data
-['whatevers in 9', 'hello world', etc., ' ']
-
-data[1] = 'hello world'
-
-stringify the data
-go back into local storage
-
-*/
-
-/**
- * when the page loads we want to read from local storage and populate the time blocks
- * var currentlyInLocal = JSON.parse(localStorage.getItem("savedInfo")) || ['','','','','','','','',''];
- * for (let i = 0; i < currentlyInLocal.lenght; i++) {
- *  var savedForThisHour = currentlyInLKocal[i];
- * $('desired text area).text(savedForThisHour);
- * }
- */
-//  if (localStorage.getItem("localHourlyTasks")) {
-//   hourlyArray = JSON.parse(localStorage.getItem("localHourlyTasks"));
-// } else {
-//   hourlyArray = [];
-// }
-
-//loop over all the v
-
-
-
-// 
