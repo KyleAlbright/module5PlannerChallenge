@@ -5,7 +5,7 @@ currentDay.text(moment().format("dddd, MMM Do, YYYY"));
 
 // a variable to check the local time to color code the blocks of time
 var currentTime = moment().hour();
-console.log(currentTime);
+
 
 // overlying function to run the program every minute to keep it updated.
 function updateTime() {
@@ -13,7 +13,7 @@ function updateTime() {
   // function to color-code the time blocks
   $(".time-block").each(function () {
     var scheduleTime = $(this).attr("id");
-    console.log(scheduleTime);
+   
 
     if (scheduleTime < currentTime) {
       $(this).children("textarea").addClass("past");
@@ -37,7 +37,7 @@ function updateTime() {
     if (timeValue)
       $(element).children(".description").val(timeValue)
   }
-  console.log("test")
+  
 
 }
 // calling the function to run the program every minute
